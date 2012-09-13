@@ -101,7 +101,7 @@ its *valid* strategies and attempt to authenticate a user against each one until
 works. If no strategy is valid, then you're out of luck. If no strategy allows
 the user to be authenticated, then you're out of luck again.
 
-By "valid", I mean that it passes the +valid?+ method test for the defined
+By "valid", I mean that it passes the `valid?` method test for the defined
 strategy (which is inside `config/application.rb`, remember?). If it *does* pass
 that, then it'll call the `authenticate!` method on that strategy, running the
 code inside it.
