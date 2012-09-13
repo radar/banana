@@ -62,24 +62,17 @@ module Banana
     Warden::Strategies.add(:password) do
 
       def valid?
-        return params["username"] || params["password"]
+        params["username"] || params["password"]
       end
 
       def authenticate!
-        p "authenticating"
         u = User.authenticate(params["username"], params["password"])
-        u.nil? ? fail!("Could not log in") : success!(u)
+        u.nil? ? fail! : success!(u)
       end
     end
 
     config.middleware.use Warden::Manager do |manager|
       manager.default_strategies :password
-      manager.failure_app = LoginController
-    end
-
-    Warden::Manager.before_failure do |env, opts| 
-      params = Rack::Request.new(env).params
-      params[:action] = :unauthenticated
     end
   end
 end
