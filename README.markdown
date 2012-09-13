@@ -75,7 +75,7 @@ post '/login', :to => "login#login"
 So that means that any time this form is submitted it will (hopefully) go to
 the `login` action inside `LoginController`. That action looks like this:
 
-```
+```ruby
 def login
   # Reset session
   env['warden'].logout
